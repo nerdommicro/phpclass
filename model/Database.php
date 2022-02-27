@@ -3,10 +3,10 @@
 class Database
 {
     
-    private $dbname = 'cablesws_ftpweb';
+    private $dbname = '';
     private $host = 'localhost';
-    private $username = 'cablesws_ftpweb';
-    private $password = '6TusdNdKdUoACkHm';
+    private $username = '';
+    private $password = '';
     private $conn;
     private $conn_error = '';
 
