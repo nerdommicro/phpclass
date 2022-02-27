@@ -1,0 +1,26 @@
+form {
+    text-align: center;
+}
+input {
+    padding: 12px;
+    margin: 12px;
+        border-radius: 5px;
+}
+form {
+    padding: 25px;
+    font-size: 12px;
+}
+body {
+    text-align: center;
+}
+table {
+    margin: 25px;
+}
+
+
+.success {
+    color: #3c763d;
+    background: #dff0d8;
+    border: 1px solid #3c763d;
+    margin-bottom: 20px;
+}
