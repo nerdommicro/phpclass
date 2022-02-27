@@ -80,10 +80,9 @@ if (isset($_POST['saveproduct'])) {
                 if($id === -1)
                 {
                     $product = new ProductClass($sku, $title, $price, $imageurl, $tags, $description, $quantity);
-                    if(ProductController::AddProduct($product)) 
-                    {
-                        $_SESSION['success'] = "Product Added Successfully. ";                        
-                    }
+                    ProductController::AddProduct($product);
+                    header('Location: ' .  $returnurl);                                   
+                    
                 } 
                 else
                 {
@@ -94,17 +93,9 @@ if (isset($_POST['saveproduct'])) {
                     $product->setImageURL($imageurl);
                     $product->setTags($tags);
                     $product->setQuantity($quantity);
-
-
-                    if(ProductController::UpdateProduct($product))
-                    {
-                        $_SESSION['success'] = "Product Updated! ";
-
-
-
-                    }
+                    ProductController::UpdateProduct($product);                    
                 }
-                header('Location: ' .  $returnurl);
+               
             }//end if any errors
     } //end isset $_POST['hiddenvarsaveproduct']);
 }

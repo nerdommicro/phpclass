@@ -94,4 +94,3 @@ $th[6] = "Quantity";
 </form>
 <?php
 include_once('../includes/Footer.php');
-?>

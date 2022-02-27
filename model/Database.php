@@ -3,12 +3,11 @@
 class Database
 {
     
-    private $dbname = '';
-    private $host = 'localhost';
-    private $username = '';
-    private $password = '';
+    private $dbname = 
+    private $host = ''
+    private $password = 
     private $conn;
-    private $conn_error = '';
+    private $conn_error
 
 
     public function __construct()
