@@ -17,89 +17,12 @@ $errors = array();
 
 
 
-// Buttons from the PRODUCTS page WITH BUTTONS FOR DELETE/UPDATE IN THE TABLE
-// -> send to the add/update page
-if (isset($_POST['updateproduct'])) {
-    if (isset($_POST['hiddenvarupdateProduct'])) {
-        $returnurl = "./add_update_product.php";
-        header("Location: " . $returnurl ."?hiddenvarupdateProduct=" . $_POST['hiddenvarupdateProduct']);
-    }
-    unset($_POST['updateproduct'], $_POST['hiddenvarupdateProduct']);
-}
 
-if (isset($_POST['deleteproduct'])) {
-    if (isset($_POST['hiddenvardeleteProduct'])) {
-        //$returnurl = stay on current page
-        ProductController::deleteProduct($_POST['hiddenvardeleteProduct']);
-    }
-    unset($_POST['deleteproduct'], $_POST['hiddenvardeleteProduct']);
-}
 // Buttons from the ADD/UPDATE PRODUCTS page WITH BUTTONS FOR CANCEL/SAVE IN THE TABLE
 // -> returns to the PRODUCTS page
 
-if (isset($_POST['cancelsaveproduct'])) {
-    $returnurl = "./products.php";
-    header("Location: " . $returnurl);
-}
 
-// add product / or update it - passed from the add/update page
-if (isset($_POST['saveproduct'])) { 
-    $returnurl = "./products.php";
-    if (isset($_POST['hiddenvarsaveproduct'])) 
-    {                
-        $id = $_POST['hiddenvarsaveproduct']; //can be -1 (add) or an actual live id (update)
-        $sku = $_POST['sku']; 
-        $title = $_POST['title']; 
-        $price =$_POST['price']; 
-        $imageurl =$_POST['imageurl']; 
-        $tags =$_POST['tags']; 
-        $description = $_POST['description']; 
-        $quantity = $_POST['quantity']; 
 
-            if (empty($sku)) { $errors[] = "Sku is required. "; }
-            if (empty($title)) { $errors[] = "Title is required. "; }
-            if (empty($price)) { $errors[] = "Price is required. "; }
-            if (empty($imageurl)) { $errors[] = "Image URL is required. "; }
-            if (empty($tags)) { $errors[] = "Tags required: Enter at least one tag. "; }
-            if (empty($description)) { $errors[] = "Description is required. "; }
-            if (empty($quantity)) { $errors[] = "Quantity is required. "; }
-
-            $p_error = Validator\isValidPrice($price);
-            if (!empty($p_error)) { $errors[] = $p_error; }
-
-            $q_error = Validator\isValidQuantity($quantity);
-            if (!empty($q_error)) { $errors[] = $q_error; }
-
-            $valid = ProductController::isSKU($_POST['sku']); 
-            if($valid){  
-                $errors[] = "SKU already exists. ";
-            }    
-
-            if (count($errors) === 0) {
-
-                if($id === -1)
-                {
-                    $product = new ProductClass($sku, $title, $price, $imageurl, $tags, $description, $quantity);
-                    ProductController::AddProduct($product);
-                    header('Location: ' .  $returnurl);                                   
-                    
-                } 
-                else
-                {
-                    $product = new ProductClass($sku, $title, $price, $imageurl, $tags, $description, $quantity);
-                    $product->setSKU($sku);
-                    $product->setTitle($sku);
-                    $product->setPrice($price);
-                    $product->setImageURL($imageurl);
-                    $product->setTags($tags);
-                    $product->setQuantity($quantity);
-                    ProductController::UpdateProduct($product);                    
-                }
-               
-            }//end if any errors
-    } //end isset $_POST['hiddenvarsaveproduct']);
-}
-    
 // LOGIN form
 if (isset($_POST['login_user'])) {
     $username = $_POST['username'];

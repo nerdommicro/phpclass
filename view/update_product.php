@@ -1,20 +1,14 @@
 <?php 
-require_once "../model/Server.php";
-include_once('../includes/Header.php');
+require_once "../model/ServerProducts.php";
+$heading = "Update product";
+
 
 
 //If user hits 'ADD NEW link' or UPDATE button on the products page - load the product
-if (isset($_GET['hiddenvarupdateProduct'])) 
+if (isset($_GET['hiddenvarupdatep']))
 {
-    $product = ProductController::getProductByNo($_GET['hiddenvarupdateProduct']);
-    $heading1 = "Update Product";
-}
-else //on page load
-{
-    //if this is going to be a new product then set defaults
-    $heading1 = "Add Product";
-    $product = new ProductClass('','','','','','','');
-    $product->setNo(-1);
+    $id = $_GET['hiddenvarupdatep'];
+    $product = ProductController::getProductByNo($id);
 }
 
 $th = array();
@@ -26,18 +20,11 @@ $th[4] = "Tags";
 $th[5] = "Description";
 $th[6] = "Quantity";
 
-//$id = "ProductNo"; //pri key - not editable
+include_once('../includes/Header.php');
 ?>
-<form action="add_update_product.php" method="POST">
+<form action="update_product.php" method="POST">
    
     <fieldset>
-        <legend>
-            <h1>
-                <?php echo $heading1;?>
-            </h1>
-        </legend>
-
-       
         <div class="form-group row mx-auto">
             <label for="sku1" class="col-sm-3 form-control-lg my-2"><?php echo $th[0];?></label>
             <div class="col-sm-6">
@@ -83,11 +70,11 @@ $th[6] = "Quantity";
 
         <p class="errors">
         <?php include('../includes/errors.php');?>
-        </p>    
-        
-        <input type="hidden" value="<?php echo $product->getProductNo();?>" name="hiddenvarsaveproduct">        
-        <button name="saveproduct" type="submit" class="btn btn-primary">Save</button>       
-        <button name="cancelsaveproduct" type="submit" class="btn btn-primary">Cancel</button>
+        </p>
+
+        <input type="hidden" value="<?php echo $id;?>" name="update_product_id">
+        <button name="update_product" type="submit" class="btn btn-primary">Update</button>
+        <button class="btn btn-info my-2 my-sm-0" onclick="window.location.href = 'products.php'">Cancel</button>
 
     </fieldset>
 

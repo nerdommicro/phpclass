@@ -1,9 +1,13 @@
 <?php
 session_start();
 error_reporting(E_ERROR);
+
+require_once "../model/ServerProducts.php";
 require_once "../utilities/Security.php";
 require_once('../controller/ProductClass.php');
 require_once('../controller/ProductController.php');
+$link_url = "add_product.php";
+
 Security::checkHTTPS();
 if (!isset($_SESSION['username']))
 {
@@ -14,21 +18,23 @@ if (isset($_GET['logout']))
     Security::logout();
 }
 
-$link_url = "add_update_product.php";
-?>
-
-<?php
 include_once('../includes/Header.php');
-require_once "../model/Server.php";
 ?>
-
-<h1>Products List</h1>
 
 <form class="d-flex">
     <input class="form-control me-sm-2" type="text" placeholder="Search">
     <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
 </form>
-
+<?php if (isset($_SESSION['successp'])) : ?>
+    <div class="error success">
+        <h3>
+            <?php
+            echo $_SESSION['successp'];
+            unset($_SESSION['successp']);
+            ?>
+        </h3>
+    </div>
+<?php endif ?>
 <?php
 $totalcount = 9;
 ?>
@@ -58,11 +64,11 @@ $totalcount = 9;
             <td scope="row"><?php echo $product->getDescription(); ?></td>
             <td scope="row"><?php echo $product->getQuantity(); ?></td>
             <td scope="row"><form action="products.php" method="POST">
-                    <input type="hidden" name="hiddenvarupdateProduct" value="<?php echo $product->getNo(); ?>"/>
-                    <input type="submit" value="Update" name="updateproduct"/></form></td>
+                    <input type="hidden" name="hiddenvarupdatep" value="<?php echo $product->getNo();?>"/>
+                    <input type="submit" name="pass_update_product" value="Update" /></form></td>
             <td scope="row"><form action="products.php" method="POST">
-                    <input type="hidden" name="hiddenvardeleteProduct" value="<?php echo $product->getNo(); ?>"/>
-                    <input type="submit" value="Delete" name="deleteproduct"/></form></td> 
+                    <input type="hidden" name="hiddenvardeletep" value="<?php echo $product->getNo();?>"/>
+                    <input type="submit" name="delete_product" value="Delete" /></form></td>
         </tr>        
         <tr>
             <td>ImageURL</td>
@@ -78,7 +84,10 @@ $totalcount = 9;
         <td colspan="9"><?php echo $counter; ?> Total Products</td>
     </tr>
      <tr>
-        <td colspan="9"><h2><a href="<?php echo $link_url; ?>">Add New</a></h2></td>
+        <td colspan="9">
+            <button class="btn btn-info my-2 my-sm-0" onclick="window.location.href = 'add_product.php'">Add Product</button>
+
+        </td>
     </tr>    
 </table>
 

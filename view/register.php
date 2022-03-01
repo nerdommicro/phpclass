@@ -6,7 +6,7 @@ $email = $_POST['email'];
 $f_name = $_POST['f_name'];
 $l_name = $_POST['l_name'];
 $zipcode = $_POST['zip_code'];
-
+$heading = "Create Account";
 
 include_once('../includes/Header.php');
 ?>
@@ -14,11 +14,7 @@ include_once('../includes/Header.php');
 <form action="register.php" method="POST">
    
     <fieldset>
-        <legend>
-            <h1>
-                <?php echo "Create Account" ?>
-            </h1>
-        </legend>
+
 
         <!-- User ID 5-25 chars-->
         <div class="form-group row mx-auto">

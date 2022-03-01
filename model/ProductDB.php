@@ -61,7 +61,7 @@ class ProductDB
         $db = new Database();
         $dbConn = $db->getDbConn();
         if ($dbConn) {
-            $query = "INSERT INTO Products (ProductSKU, ProductTitle, ProductImageURL,ProductTags, ProductPrice, ProductDescription, ProductQuantity)
+            $query = "INSERT INTO Products (ProductSKU, ProductTitle, ProductImageURL, ProductTags, ProductPrice, ProductDescription, ProductQuantity)
                         VALUES ('$sku','$title', '$imageurl','$tags', '$price', '$d', '$q')";
             return $dbConn->query($query) === TRUE;
         }
@@ -75,8 +75,7 @@ class ProductDB
         $db = new Database();
         $dbConn = $db->getDbConn();
         if ($dbConn) {
-            $query = "UPDATE Products SET
-                        ProductSKU='$sku', 
+            $query = "UPDATE Products SET ProductSKU='$sku', 
                             ProductTitle='$title', 
                             ProductImageURL='$imageurl', ,
                             ProductTags='$tags', , 

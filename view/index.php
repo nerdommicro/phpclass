@@ -1,7 +1,7 @@
 <?php
 session_start();
 error_reporting(E_ERROR);
-
+$heading = "Home Page";
 require_once "../utilities/Security.php";
 
 if (!isset($_SESSION['username'])) {
@@ -10,14 +10,9 @@ if (!isset($_SESSION['username'])) {
 if (isset($_GET['logout'])) {
     Security::logout();
 }
-?>
 
-<?php
     include_once('../includes/Header.php');
 ?>
-
-<h1>Home Page</h1>
-
 <div class="content">
     <!-- welcome message -->
     <?php if (isset($_SESSION['success'])) : ?>

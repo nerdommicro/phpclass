@@ -13,7 +13,7 @@ class ProductController
             $row['ProductTitle'],
             $row['ProductPrice'],
             $row['ProductImageURL'],
-            $row['Tags'],
+            $row['ProductTags'],
             $row['ProductDescription'],
             $row['ProductQuantity'],
             $row['ProductNo']

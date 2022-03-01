@@ -3,11 +3,12 @@
 class Database
 {
     
-    private $dbname = 
-    private $host = ''
-    private $password = 
+    private $dbname = 'cablesws_ftpweb';
+    private $host = 'localhost';
+    private $username = 'cablesws_ftpweb';
+    private $password = '6TusdNdKdUoACkHm';
     private $conn;
-    private $conn_error
+    private $conn_error = '';
 
 
     public function __construct()

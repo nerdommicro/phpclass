@@ -1,5 +1,6 @@
 <?php
-static $title = "E-commerce Inventory 1.0";
+static $titleheader = "E-commerce Inventory 1.0";
+
 ?>
 
 <!DOCTYPE html>
@@ -10,14 +11,13 @@ static $title = "E-commerce Inventory 1.0";
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../css/bootswatchTheme.css">
         <link rel="stylesheet" href="../css/mystyles.css">
-        
-        <title><?php echo $title; ?></title>
+        <title><?php echo $titleheader . ' - ' . $heading; ?></title>
     </head>
-    <body> 
-
-        
+    <body>
         <header>
             <?php
             include_once('../includes/Nav.php'); ?>
         </header>
-
+<h1>
+<?php echo $heading;?>
+</h1>
